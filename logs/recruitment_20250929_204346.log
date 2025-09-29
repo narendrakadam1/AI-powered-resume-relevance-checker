@@ -1,0 +1,84 @@
+2025-09-29 20:44:12,848 - openai._base_client - INFO - Retrying request to /chat/completions in 0.940951 seconds
+2025-09-29 20:44:17,893 - openai._base_client - INFO - Retrying request to /chat/completions in 1.842195 seconds
+2025-09-29 20:44:23,862 - AI_Recruiter - ERROR - Error processing resume: Connection error.
+2025-09-29 20:44:23,863 - AI_Recruiter - ERROR - Processing error: Connection error.
+Traceback (most recent call last):
+  File "C:\Users\rockn\AppData\Local\Programs\Python\Python310\lib\site-packages\httpx\_transports\default.py", line 66, in map_httpcore_exceptions
+    yield
+  File "C:\Users\rockn\AppData\Local\Programs\Python\Python310\lib\site-packages\httpx\_transports\default.py", line 228, in handle_request
+    resp = self._pool.handle_request(req)
+  File "C:\Users\rockn\AppData\Local\Programs\Python\Python310\lib\site-packages\httpcore\_sync\connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "C:\Users\rockn\AppData\Local\Programs\Python\Python310\lib\site-packages\httpcore\_sync\connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+  File "C:\Users\rockn\AppData\Local\Programs\Python\Python310\lib\site-packages\httpcore\_sync\connection.py", line 101, in handle_request
+    raise exc
+  File "C:\Users\rockn\AppData\Local\Programs\Python\Python310\lib\site-packages\httpcore\_sync\connection.py", line 78, in handle_request
+    stream = self._connect(request)
+  File "C:\Users\rockn\AppData\Local\Programs\Python\Python310\lib\site-packages\httpcore\_sync\connection.py", line 124, in _connect
+    stream = self._network_backend.connect_tcp(**kwargs)
+  File "C:\Users\rockn\AppData\Local\Programs\Python\Python310\lib\site-packages\httpcore\_backends\sync.py", line 207, in connect_tcp
+    with map_exceptions(exc_map):
+  File "C:\Users\rockn\AppData\Local\Programs\Python\Python310\lib\contextlib.py", line 153, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "C:\Users\rockn\AppData\Local\Programs\Python\Python310\lib\site-packages\httpcore\_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ConnectError: [WinError 10061] No connection could be made because the target machine actively refused it
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\rockn\AppData\Local\Programs\Python\Python310\lib\site-packages\openai\_base_client.py", line 918, in _request
+    response = self._client.send(
+  File "C:\Users\rockn\AppData\Local\Programs\Python\Python310\lib\site-packages\httpx\_client.py", line 901, in send
+    response = self._send_handling_auth(
+  File "C:\Users\rockn\AppData\Local\Programs\Python\Python310\lib\site-packages\httpx\_client.py", line 929, in _send_handling_auth
+    response = self._send_handling_redirects(
+  File "C:\Users\rockn\AppData\Local\Programs\Python\Python310\lib\site-packages\httpx\_client.py", line 966, in _send_handling_redirects
+    response = self._send_single_request(request)
+  File "C:\Users\rockn\AppData\Local\Programs\Python\Python310\lib\site-packages\httpx\_client.py", line 1002, in _send_single_request
+    response = transport.handle_request(request)
+  File "C:\Users\rockn\AppData\Local\Programs\Python\Python310\lib\site-packages\httpx\_transports\default.py", line 227, in handle_request
+    with map_httpcore_exceptions():
+  File "C:\Users\rockn\AppData\Local\Programs\Python\Python310\lib\contextlib.py", line 153, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "C:\Users\rockn\AppData\Local\Programs\Python\Python310\lib\site-packages\httpx\_transports\default.py", line 83, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ConnectError: [WinError 10061] No connection could be made because the target machine actively refused it
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\rockn\Downloads\swarm-writer-agents-main\ai-recruiter-agency\app.py", line 128, in main
+    result = asyncio.run(process_resume(file_path))
+  File "C:\Users\rockn\AppData\Local\Programs\Python\Python310\lib\asyncio\runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "C:\Users\rockn\AppData\Local\Programs\Python\Python310\lib\asyncio\base_events.py", line 641, in run_until_complete
+    return future.result()
+  File "C:\Users\rockn\Downloads\swarm-writer-agents-main\ai-recruiter-agency\app.py", line 58, in process_resume
+    return await orchestrator.process_application(resume_data)
+  File "C:\Users\rockn\Downloads\swarm-writer-agents-main\ai-recruiter-agency\agents\orchestrator.py", line 46, in process_application
+    extracted_data = await self.extractor.run(
+  File "C:\Users\rockn\Downloads\swarm-writer-agents-main\ai-recruiter-agency\agents\extractor_agent.py", line 27, in run
+    extracted_info = self._query_ollama(raw_text)
+  File "C:\Users\rockn\Downloads\swarm-writer-agents-main\ai-recruiter-agency\agents\base_agent.py", line 22, in _query_ollama
+    response = self.ollama_client.chat.completions.create(
+  File "C:\Users\rockn\AppData\Local\Programs\Python\Python310\lib\site-packages\openai\_utils\_utils.py", line 275, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\rockn\AppData\Local\Programs\Python\Python310\lib\site-packages\openai\resources\chat\completions.py", line 663, in create
+    return self._post(
+  File "C:\Users\rockn\AppData\Local\Programs\Python\Python310\lib\site-packages\openai\_base_client.py", line 1200, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+  File "C:\Users\rockn\AppData\Local\Programs\Python\Python310\lib\site-packages\openai\_base_client.py", line 889, in request
+    return self._request(
+  File "C:\Users\rockn\AppData\Local\Programs\Python\Python310\lib\site-packages\openai\_base_client.py", line 942, in _request
+    return self._retry_request(
+  File "C:\Users\rockn\AppData\Local\Programs\Python\Python310\lib\site-packages\openai\_base_client.py", line 1013, in _retry_request
+    return self._request(
+  File "C:\Users\rockn\AppData\Local\Programs\Python\Python310\lib\site-packages\openai\_base_client.py", line 942, in _request
+    return self._retry_request(
+  File "C:\Users\rockn\AppData\Local\Programs\Python\Python310\lib\site-packages\openai\_base_client.py", line 1013, in _retry_request
+    return self._request(
+  File "C:\Users\rockn\AppData\Local\Programs\Python\Python310\lib\site-packages\openai\_base_client.py", line 952, in _request
+    raise APIConnectionError(request=request) from err
+openai.APIConnectionError: Connection error.
